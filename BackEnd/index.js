@@ -13,6 +13,8 @@ mongoose.connect(
     console.log("connected to database");
   }
 );
+
+//register
 app.post("/api/register", async (req, res) => {
   console.log(req.body);
   try {
@@ -26,6 +28,32 @@ app.post("/api/register", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({ status: "error", error: "duplicate email", message: false });
+  }
+});
+
+//login
+app.post("/api/login", async (req, res) => {
+  console.log(req.body);
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.json({
+        status: "error",
+        error: "invalid email",
+        message: false,
+      });
+    }
+    if (user.password != req.body.password) {
+      return res.json({
+        status: "error",
+        error: "invalid password",
+        message: false,
+      });
+    }
+    return res.json({ status: "ok", message: true });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: "invalid email", message: false });
   }
 });
 

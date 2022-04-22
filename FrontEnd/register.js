@@ -9,6 +9,10 @@ async function handleSubmit(e) {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
   const password2 = document.querySelector("#confirm_password").value;
+  if (password != password2) {
+    alert("password not match");
+    return;
+  }
   const user = {
     name: name,
     email: email,
