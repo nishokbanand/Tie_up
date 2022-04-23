@@ -1,0 +1,100 @@
+* {
+  box-sizing: bordered-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  list-style-type: none;
+  color: black;
+  margin: 0;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  margin: 2%;
+  list-style: none;
+}
+
+.nav_items {
+  display: inline;
+  padding: 2%;
+  margin-bottom: 0;
+}
+
+#homeicon {
+  height: 2pc;
+  float: left;
+  border-radius: 20%;
+}
+
+.searchbar {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchimg {
+  height: 20px;
+  width: 10px;
+  background-color: blue;
+  padding: 0%;
+}
+
+.sbutton {
+  width: 60px;
+  padding: 0px;
+}
+
+.cover {
+  border-radius: 10%;
+  height: 300px;
+}
+
+.postimage {
+  padding: 10px;
+}
+
+.image {
+  background-color: black;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.postdesc {
+  margin: 1%;
+}
+
+.profile {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.fa-thumbs-up {
+  font-size: 100px;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(0, 30, 139, 0.718);
+}
+
+.fa:hover {
+  color: green;
+}
+
+.reaction {
+  list-style-type: none;
+  color: black;
+  margin: 0;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reaction-items {
+  padding-left: 2%;
+  display: inline;
+  margin-right: 20px;
+}

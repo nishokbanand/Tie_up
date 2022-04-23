@@ -1,35 +1,68 @@
 <html>
+
 <head>
-<title>Tie Up</title>
-<link rel="stylesheet" href="style.css">
+	<title>Tie Up</title>
+	<link rel="stylesheet" href="./CSS/style.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<div class="navbar">
-	<ul class="list">
-		<li class="navbar_items">Home</li>
-		<li class="navbar_items" ><a href="./login.html" style="color: wheat; text-decoration: none;">Login</a></li>
-		<li class="navbar_items">Sign up</li>
-	</ul>
-</div>
-<div class="box">
-	<div class="leftbox">
-		<div class="leftcontent">
-		 	<p>
-				The brand that wants to help you groove like a pro when hunger impedes your movement. The brand that wants to ensure
-				that none of your meal is left incomplete. The brand that comes to your rescue each time when hunger tests your
-				patience. The brand that wants to ensure that you get to capture all of your precious moments and not miss them. The
-				brand that helps you to keep a tab on everything just by one tap on it. The brand just doesn’t take care of its
-				customers but its employees too. They know that there’s a lot in a name. That’s what Swiggy is. Swiggy not only wants to
-				surprise taste buds, but it also aims to deliver happiness. What’s so amazing about Swiggy Business Model?
-			 </p>
-			 <img src="./download (1).jpg" alt="">
+	<div class="navbar">
+		<ul class="list">
+			<li class="nav_items btn"><img id="homeicon" src="../FrontEnd/wallpapers/Home/homeicon.jpg" /></li>
+			<li class="nav_items btn">Home</li>
+			<li class="nav_items btn"><a href="./login.html" style="color:black;text-decoration: none;">Login</a>
+			</li>
+			<li class="nav_items btn"><a href="./register.html"style="color:black;text-decoration: none;">Sign Up</a></li>
+		</ul>
+		<form class="nav_items searchbar"><input class="form-control" style="border-right: 0px;" type="text"
+				placeholder="Search"><button class="btn btn-primary" type="submit"><i
+					class="fa fa-search"></i></button></input>
+		</form>
+	</div>
+
+	<div class="container card post mb-4">
+		<div class="username pt-2">
+			<img class="profile" src="../FrontEnd/wallpapers/download (1).jpg">
+			<span class="">Username</span>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="postimage col col-md-12 col-lg-5 col-sm-12 col-xs-12">
+				<img class="image" src="../FrontEnd/wallpapers/Home/cover.gif">
+			</div>
+			<div class="post col col-md-12 col-lg-7 col-sm-12 col-xs-12">
+				The brand that wants to help you groove like a pro when hunger impedes your movement. The brand that
+				wants to ensure
+				that none of your meal is left incomplete. The brand that comes to your rescue each time when hunger
+				tests your
+				patience. The brand that wants to ensure that you get to capture all of your precious moments and
+				not miss them. The
+				brand that helps you to keep a tab on everything just by one tap on it. The brand just doesn’t take
+				care of its
+				customers but its employees too. They know that there’s a lot in a name. That’s what Swiggy is.
+				Swiggy not only wants to
+				surprise taste buds, but it also aims to deliver happiness. What’s so amazing about Swiggy Business
+				Model?
+				The brand that wants to help you groove like a pro when hunger impedes your movement. The brand that
+				wants to ensure
+				that none of your meal is left incomplete. The brand that comes to your rescue each time when hunger
+				tests your
+			</div>
+		</div>
+		<hr>
+		<div class="navbar">
+			<ul class="reaction">
+				<li class="reaction-items"><i onclick="myFunction(this)" class="fa fa-thumbs-up fa-2x"></i></li>
+				<li class="reaction-items"><i onclick="myFunction(this)" class="fa fa-comment fa-2x"></i></li>
+				<li class="reaction-items"><i onclick="myFunction(this)" class="fa fa-upvote fa-2x"></i></li>
+			</ul>
 		</div>
 	</div>
-	<div class="rightbox">
-		<div class="leftcontent">
-			<h1 style="text-align: center;">Progress</h1>
-	   </div>
-	</div>
-</div>
 </body>
+
 </html>

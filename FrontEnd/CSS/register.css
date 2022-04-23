@@ -76,7 +76,7 @@ img {
 }
 
 .right {
-  background: url("./login wallpaper/login&regbackground.jpg");
+  background: url("../wallpapers/login&regbackground.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -105,7 +105,7 @@ img {
     width: 100%;
     height: 100%;
     padding: 25px 25px;
-    background-image: url("./login wallpaper/responsive login-bg_img.jpg");
+    background-image: url("../wallpapers/login&regbackground.jpg");
   }
   .login-form {
     height: 100%;
