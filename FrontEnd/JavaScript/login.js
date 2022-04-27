@@ -1,5 +1,7 @@
 window.onload = function () {
-  document.querySelector("login-form").addEventListener("submit", handleSubmit);
+  document
+    .querySelector(".login-form")
+    .addEventListener("submit", handleSubmit);
 };
 async function handleSubmit(e) {
   e.preventDefault();
@@ -20,9 +22,9 @@ async function handleSubmit(e) {
     }),
   });
   const data = await (await response).json();
-  if (data.user) {
-    localStorage.setItem("token", data.user);
-    window.location.href = "http://localhost:3000/";
+
+  if (data.status === "ok") {
+    window.location = `./home.html?name=${data["name"]["name"]}`;
   } else {
     alert("Invalid Credentials");
   }

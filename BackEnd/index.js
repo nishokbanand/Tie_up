@@ -1,28 +1,29 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
+const app = express();
 const bodyParser = require("body-parser");
-const User = require("./models/user.model");
+const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const port = 4000;
+const Imageuploader = require("./routes/image");
+const path = require("path");
+require("./database")();
 app.use(cors());
 app.use(express.json());
-mongoose.connect(
-  "mongodb+srv://nishok:nishok123@cluster0.gqizq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  () => {
-    console.log("connected to database");
-  }
-);
+app.use(bodyParser.json());
+app.use(fileUpload());
 
 //register
+const User = require("./models/user.model");
 app.post("/api/register", async (req, res) => {
   console.log(req.body);
+  const password = await bcrypt.hash(req.body.password, 10);
   try {
     await User.create({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
-      password2: req.body.password2,
+      password: password,
+      password2: await bcrypt.hash(req.body.password2, 10),
     });
     return res.json({ status: "ok", message: true });
   } catch (error) {
@@ -32,31 +33,33 @@ app.post("/api/register", async (req, res) => {
 });
 
 //login
+const JWT_SECRET = "secret";
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 app.post("/api/login", async (req, res) => {
-  console.log(req.body);
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email }).lean();
     if (!user) {
-      return res.json({
-        status: "error",
-        error: "invalid email",
-        message: false,
-      });
+      return res.json({ status: "error", error: "Invalid email" });
     }
-    if (user.password != req.body.password) {
-      return res.json({
-        status: "error",
-        error: "invalid password",
-        message: false,
-      });
+    if (await bcrypt.compareSync(req.body.password, user.password)) {
+      const token = jwt.sign(
+        { id: user._id, username: user.username },
+        JWT_SECRET
+      );
+      return res.json({ status: "ok", name: user, data: token, message: true });
+    } else {
+      return res.json({ status: "error", error: "Invalid password" });
     }
-    return res.json({ status: "ok", message: true });
   } catch (error) {
     console.log(error);
     res.json({ status: "error", error: "invalid email", message: false });
   }
 });
 
+//add images to mongodb using gridfs
+const imgUploadRoute = require("./routes/image");
+app.post("/upload", imgUploadRoute);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
