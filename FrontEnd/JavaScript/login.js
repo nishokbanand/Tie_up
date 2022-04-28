@@ -22,7 +22,6 @@ async function handleSubmit(e) {
     }),
   });
   const data = await (await response).json();
-
   if (data.status === "ok") {
     window.location = `./home.html?name=${data["name"]["name"]}`;
   } else {

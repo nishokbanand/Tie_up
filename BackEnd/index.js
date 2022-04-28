@@ -58,8 +58,14 @@ app.post("/api/login", async (req, res) => {
 });
 
 //add images to mongodb using gridfs
-const imgUploadRoute = require("./routes/image");
-app.post("/upload", imgUploadRoute);
+const { imageUploader } = require("./routes/image");
+const Post = require("./models/images.model");
+app.post("/upload", imageUploader);
+app.get("/values", async (req, res) => {
+  var data = await Post.collection.find({}).toArray();
+  res.json(data);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
