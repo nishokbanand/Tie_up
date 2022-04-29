@@ -13,6 +13,7 @@ var imageUploader = async function (req, res) {
       image: req.files.file.data.toString("base64"),
     });
     value = a;
+    res.redirect("http://localhost:5500/FrontEnd/home.html");
     return res.json({ status: "ok", data: a });
   } catch (error) {
     console.log(error);
