@@ -11,19 +11,17 @@ async function handleSubmit(e) {
     email: email,
     password: password,
   };
-  const response = fetch("http://localhost:4000/api/login", {
+  const response = fetch("http://localhost:4000/login", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    body: JSON.stringify(user),
   });
-  const data = await (await response).json();
-  if (data.status === "ok") {
-    window.location = `./home.html?name=${data["name"]["name"]}`;
+  const data = await response;
+  console.log(response);
+  if (data.status === 200) {
+    window.location = "/home";
   } else {
     alert("Invalid Credentials");
   }

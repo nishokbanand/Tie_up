@@ -19,22 +19,19 @@ async function handleSubmit(e) {
     password: password,
     password2: password2,
   };
-  const response = fetch("http://localhost:4000/api/register", {
+  const response = fetch("http://localhost:4000/register", {
     method: "POST",
+    body: JSON.stringify(user),
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-      password2,
-    }),
   });
-  const data = await (await response).json();
-  if (data.message) {
-    window.location.href = "./login.html";
+  const data = await response;
+  console.log("data");
+  console.log(data);
+  if (data.status === 200) {
+    window.location.href = "/home";
   } else {
-    window.location.href = "./register.html";
+    window.location.href = "/register";
   }
 }

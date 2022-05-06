@@ -77,16 +77,16 @@
   font-size: 100px;
   cursor: pointer;
   user-select: none;
-  color: rgba(0, 30, 139, 0.718);
+  color: rgba(7, 7, 7, 0.485);
 }
 
 .fa:hover {
-  color: green;
+  color: rgba(102, 111, 238, 0.751);
 }
 
 .reaction {
   list-style-type: none;
-  color: black;
+  color: rgba(0, 0, 0, 0.501);
   margin: 0;
   font-size: 20px;
   display: flex;
@@ -97,4 +97,30 @@
   padding-left: 2%;
   display: inline;
   margin-right: 20px;
+}
+
+.outbox {
+  background-color: rgba(50, 0, 247, 0.031);
+  border-radius: 2%;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 2%;
+}
+
+.inbox {
+  padding: 2%;
+}
+
+.outboxtitle {
+  color: rgb(15, 15, 148);
+}
+
+.post {
+  padding: 2%;
+  margin: 7%;
+  margin-top: 0%;
+}
+
+.pages_style {
+  background-color: wheat;
 }
