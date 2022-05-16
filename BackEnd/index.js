@@ -53,55 +53,25 @@ app.route("/login").get(sessionChecker, (req, res) => {
   res.sendFile("/Tie-Up/web/FrontEnd/login.html");
 });
 //register
-const User = require("./models/user.model");
+const { register } = require("./routes/register.js");
 app
   .route("/register")
   .get(sessionChecker, (req, res) => {
     res.sendFile("/Tie-Up/web/FrontEnd/register.html");
   })
-  .post(async (req, res) => {
-    console.log(req.body);
-    const password = await bcrypt.hash(req.body.password, 10);
-    var user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: password,
-      password2: password,
-    });
-    await user.save((err, doc) => {
-      if (err) {
-        res.redirect("/register");
-      } else {
-        req.session.user = doc;
-        res.redirect("/home");
-      }
-    });
-  });
-
+  .post(register);
 //login
+const { login } = require("./routes/login");
 app
   .route("/login")
   .get(sessionChecker, (req, res) => {
     res.sendFile("/Tie-Up/web/FrontEnd/login.html");
   })
-  .post(async (req, res) => {
-    var email = req.body.email;
-    var password = req.body.password;
-    console.log(email);
-    var user = await User.findOne({ email: email }).lean();
-    if (!user) {
-      res.redirect("/login");
-    }
-    if (await bcrypt.compareSync(password, user.password)) {
-      req.session.user = user;
-      res.redirect("/home");
-    } else {
-      res.redirect("/login");
-    }
-  });
+  .post(login);
 
 app.get("/home", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
+    res.cookie("user_name", req.session.user.name);
     res.sendFile("/Tie-Up/web/FrontEnd/home.html");
   } else {
     res.redirect("/login");
@@ -116,8 +86,16 @@ app.get("/addPost", (req, res) => {
   }
 });
 
-const Post = require("./models/images.model");
+app.get("/yourposts", (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.sendFile("/Tie-Up/web/FrontEnd/yourposts.html");
+  } else {
+    res.redirect("/login");
+  }
+});
 
+//get Posts
+const Post = require("./models/images.model");
 const { imageUploader } = require("./routes/image");
 app.post("/upload", imageUploader);
 app.get("/values", async (req, res) => {
@@ -125,48 +103,10 @@ app.get("/values", async (req, res) => {
   res.json(data);
 });
 
+//delete post
+const { deletepost } = require("./routes/deletePost");
+app.post("/deletePost", deletepost);
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-//register
-// app.post("/api/register", async (req, res) => {
-//   console.log(req.body);
-//   const password = await bcrypt.hash(req.body.password, 10);
-//   try {
-//     await User.create({
-//       name: req.body.name,
-//       email: req.body.email,
-//       password: password,
-//       password2: await bcrypt.hash(req.body.password2, 10),
-//     });
-//     return res.json({ status: "ok", message: true });
-//   } catch (error) {
-//     console.log(error);
-//     res.json({ status: "error", error: "duplicate email", message: false });
-//   }
-// });
-//login
-// const JWT_SECRET = "secret";
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
-// app.post("/api/login", async (req, res) => {
-//   try {
-//     const user = await User.findOne({ email: req.body.email }).lean();
-//     if (!user) {
-//       return res.json({ status: "error", error: "Invalid email" });
-//     }
-//     if (await bcrypt.compareSync(req.body.password, user.password)) {
-//       const token = jwt.sign(
-//         { id: user._id, username: user.username },
-//         JWT_SECRET
-//       );
-//       return res.json({ status: "ok", name: user, data: token, message: true });
-//     } else {
-//       return res.json({ status: "error", error: "Invalid password" });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     res.json({ status: "error", error: "invalid email", message: false });
-//   }
-// });

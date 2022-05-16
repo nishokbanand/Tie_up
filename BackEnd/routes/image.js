@@ -8,6 +8,7 @@ const Post = require("../models/images.model");
 var imageUploader = async function (req, res) {
   try {
     a = await Post.create({
+      username: req.session.user.name,
       title: req.body.title,
       description: req.body.description,
       image: req.files.file.data.toString("base64"),
