@@ -27,5 +27,6 @@ window.onload = async () => {
     $(pg_row).append(image);
     $(page).append(pg_row);
     $(".pages").append(page);
+    document.getElementById("loader").style.display = "none";
   }
 };
