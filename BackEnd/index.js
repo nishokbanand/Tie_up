@@ -11,10 +11,12 @@ var cookie_Parser = require("cookie-parser");
 var session = require("express-session");
 require("./database")();
 app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
+app.use(
+  express.json({
+    limit: "50mb",
+  })
+);
 app.use(cookie_Parser());
-
 app.use(
   session({
     key: "user_sid",
@@ -65,7 +67,6 @@ app
     res.sendFile("/Tie-Up/web/FrontEnd/login.html");
   })
   .post(login);
-
 //route for home
 app.get("/home", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
@@ -124,12 +125,99 @@ app.put("/edit/:id", async (req, res) => {
   } else {
     data.title = req.body.title;
     data.description = req.body.description;
-    if (req.files) {
+    if (req.files != undefined) {
       data.image = req.files.image.data.toString("base64");
+    } else {
+      data.image = req.body.image;
     }
     data.save();
     res.sendStatus(200);
   }
+});
+
+//logout
+app.get("/logout", (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.clearCookie("user_sid");
+    res.redirect("/login");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+//forgotpasssword
+const { forgotpass } = require("./routes/forgotpasswordbackend");
+app
+  .route("/forgotpassword")
+  .get(sessionChecker, (req, res) => {
+    res.sendFile("/Tie-Up/web/FrontEnd/forgotpassword.html");
+  })
+  .post(forgotpass);
+
+const User = require("./models/user.model");
+app.get("/resetpassword/:token", async (req, res) => {
+  var token = req.params.token;
+  var data = await User.findOne({ resetPasswordToken: token });
+  if (data == null) {
+    res.sendStatus(404);
+  } else {
+    res.sendFile("/Tie-Up/web/FrontEnd/resetpass.html");
+  }
+});
+app.post("/resetpassword/:token", async (req, res) => {
+  console.log("hello");
+  console.log(req.body);
+  var id = req.params.id;
+  var data = await Post.findById(id);
+  if (data == null) {
+    res.sendStatus(404);
+  } else {
+    data.password = req.body.password;
+    data.save();
+    res.sendStatus(200);
+  }
+});
+//like dislike functionality
+app.put("/like/:id", async (req, res) => {
+  var id = req.params.id;
+  var data = await Post.findById(id);
+  console.log(req.session.user);
+  if (!data.likes.includes(req.session.user.name)) {
+    await data.updateOne({ $push: { likes: req.session.user.name } });
+    res.sendStatus(200);
+  } else {
+    await data.updateOne({ $pull: { likes: req.session.user.name } });
+    console.log(req.session);
+    res.sendStatus(200);
+  }
+});
+
+//route for showing user profile
+app.get("/yourprofile", (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.sendFile("/Tie-Up/web/FrontEnd/yourprofile.html");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+//updating user profile data
+const { profileuploader } = require("./routes/userprofile");
+app.put("/updateprofile", profileuploader);
+
+const userprofile = require("./models/userprofile.model");
+//change the placeholder value
+app.get("/userprofile/:id", async (req, res) => {
+  var id = req.params.id;
+  var data = await userprofile.findOne({ name: id });
+  res.json(data);
+});
+
+//user image for home page
+app.get("/home/:id", async (req, res) => {
+  var id = req.params.id;
+  var data = await userprofile.findOne({ name: id });
+  res.json(data);
 });
 
 app.listen(port, () => {

@@ -2,6 +2,7 @@ window.onload = function () {
   document
     .querySelector("#register-form")
     .addEventListener("submit", handleSubmit);
+  document.querySelector("#forgotpassword").addEventListener();
 };
 async function handleSubmit(e) {
   e.preventDefault();

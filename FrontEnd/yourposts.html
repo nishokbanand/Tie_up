@@ -24,31 +24,40 @@
     <link rel="stylesheet" href="./CSS/loading.css">
   </head>
   <body>
-    <div class="navbar">
+    <div class="navbari">
 		<ul class="list">
 			<li class="nav_items btn"><img id="homeicon" src="./wallpapers/homeicon.jpg" /></li>
-			<li class="nav_items btn"><a href="/home">Home</a>  </li>
-			<li class="nav_items btn"><a href="/login" style="color:black;text-decoration: none;">Login</a>
+			<li class="nav_items"><a class="nav_item btn" href="/home">Home</a></li>
+			<li class="nav_items"><a class="nav_item btn" href="/addPost">Add Post</a>
 			</li>
-			<li class="nav_items btn"><a href="/register" style="color:black;text-decoration: none;">Sign Up</a>
+			<li class="nav_items"><a class="nav_item btn" href="/yourposts">Your Posts</a>
 			</li>
-			<li class="nav_items btn"><a href="/addPost" style="color:black;text-decoration: none;">Add post</a>
-			</li>
-			<li class="nav_items btn"><a href="/yourposts" style="color:black;text-decoration: none;">your posts</a>
-
-			</li>				<p id="username">username</p>
 
 		</ul>
-		<form class="nav_items searchbar"><input class="form-control" style="border-right: 0px;" type="text"
-				placeholder="Search"><button class="btn btn-primary" type="submit"><i
-					class="fa fa-search"></i></button></input>
+		<form class="searchbar">
+			<input class="form-control" style="border-right: 0px;" type="text" placeholder="Search"><button
+				class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></input>
 		</form>
+		<div class="profile mr-2">
+			<p class="btn" id="username">username</p>
+			<div class="dropdown">
+				<img onclick="myFunction()" class="profilepic dropbtn" src="./wallpapers/homeicon.jpg" />
+				<div id="myDropdown" class="dropdown-content">
+				<a class="btn" href="/about">About</a>
+					<a class="btn" href="/yourprofile">Your Profile</a>
+					<a class="btn" href="/contact">Contact</a>
+				</div>
+			</div>
+		</div>
+
 	</div>
   
 	<div id="loader"></div>
 		<div style="display:none;" id="myDiv" class="animate-bottom">
 	</div>
-    <div class="pages"></div>
+  <!-- <div class="container" style="width:40%;justify-content: center;"> -->
+    <div class="pages" style="width: 40%; position: absolute; margin: auto;"></div>
+    <!-- </div> -->
     <script src="./JavaScript/yourposts.js"></script>
   </body>
 </html>

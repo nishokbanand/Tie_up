@@ -13,32 +13,41 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <ul class="list">
-            <li class="nav_items btn"><img id="homeicon" src="./wallpapers/homeicon.jpg" /></li>
-            <li class="nav_items btn"><a href="./home" style="color:black;text-decoration: none;">Home</a></li>
-            <li class="nav_items btn"><a href="./login" style="color:black;text-decoration: none;">Login</a>
-            </li>
-            <li class="nav_items btn"><a href="./register" style="color:black;text-decoration: none;">Sign
-                    Up</a>
-            </li>
-            <li class="nav_items btn"><a href="./addpost" style="color:black;text-decoration: none;">Add
-                    post</a>
-            </li>
-        </ul>
-        <form class="nav_items searchbar"><input class="form-control" style="border-right: 0px;" type="text"
-                placeholder="Search"><button class="btn btn-primary" type="submit"><i
-                    class="fa fa-search"></i></button></input>
-        </form>
-    </div>
-    <div class="outbox">
+    <div class="navbari">
+		<ul class="list">
+			<li class="nav_items btn"><img id="homeicon" src="./wallpapers/homeicon.jpg" /></li>
+			<li class="nav_items"><a class="nav_item btn" href="/home">Home</a></li>
+			<li class="nav_items"><a class="nav_item btn" href="/addPost">Add Post</a>
+			</li>
+			<li class="nav_items"><a class="nav_item btn" href="/yourposts">Your Posts</a>
+			</li>
+
+		</ul>
+		<form class="searchbar ">
+			<input class="form-control" style="border-right: 0px;" type="text" placeholder="Search"><button
+				class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></input>
+		</form>
+		<div class="profile mr-2">
+			<p class="btn" id="username">username</p>
+			<div class="dropdown">
+				<img onclick="myFunction()" class="profilepic dropbtn" src="./wallpapers/homeicon.jpg" />
+				<div id="myDropdown" class="dropdown-content">
+					<a class="btn" href="/about">About</a>
+					<a class="btn" href="/yourprofile">Your Profile</a>
+					<a class="btn" href="/contact">Contact</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+    <div class="outbox" style="background-color: white;">
         <h4 class="outboxtitle">Create a Post</h4>
         <hr>
         <br>
         <form action="/upload" id="addpost-form" method="POST" enctype="multipart/form-data">
             <div class="inbox">
                 <label for="Title" class="mb-2">Title</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" ">
             </div>
             <div class="inbox">
                 <label for="description" class="mb-2">Description</label>

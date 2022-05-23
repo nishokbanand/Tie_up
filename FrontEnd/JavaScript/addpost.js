@@ -1,4 +1,5 @@
 window.onload = function () {
+  document.getElementById("username").innerText = document.cookie.split("=")[2];
   document
     .querySelector(".addpost-form")
     .addEventListener("submit", handleSubmit);

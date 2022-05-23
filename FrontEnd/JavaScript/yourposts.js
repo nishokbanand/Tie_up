@@ -61,19 +61,23 @@ window.onload = async () => {
         const img = (document.createElement("h1").innerText = "Image");
         const newtitle = document.createElement("input");
         const newdes = document.createElement("textarea");
-        //create a textarea element
-
-        //file input
         const newimage = document.createElement("input");
         const submitbtn = document.createElement("button");
         submitbtn.innerText = "Submit";
         submitbtn.className = "btn btn-success";
         submitbtn.id = editbtn.id;
         newimage.type = "file";
+        let id = editbtn.id;
         newtitle.value = data[e.target.value].title;
         newdes.value = data[e.target.value].description;
         var image = new Image();
         image.src = `data:image/png;base64,${data[e.target.value].image}`;
+        newdes.className = "col col-md-12 col-lg-7 col-sm-12 col-xs-12";
+        page.className = "post card mb-4";
+        username.className = "username pt-2";
+        pg_row.className = "row";
+        newimage.className =
+          "postimage col col-md-12 col-lg-5 col-sm-12 col-xs-12";
         $(e.target).parent().append(title);
         $(e.target).parent().append(newtitle);
         $(e.target).parent().append(des);
@@ -89,8 +93,9 @@ window.onload = async () => {
           const formData = new FormData();
           formData.append("title", newtitle.value);
           formData.append("description", newdes.value);
-          if (image.value == "") {
-            formData.append("image", data[i].image);
+          if (newimage.value == undefined) {
+            console.log("here");
+            formData.append("image", data[id].image);
           }
           formData.append("image", newimage.files[0]);
           const response = await fetch(
@@ -102,7 +107,7 @@ window.onload = async () => {
           );
           if (response.status === 200) {
             $(e.target).parent().remove();
-            location.reload();
+            window.location = "/yourposts";
           } else {
             alert("Error");
           }
@@ -132,6 +137,7 @@ window.onload = async () => {
     document.getElementById("loader").style.display = "none";
     const text = document.createElement("h1");
     text.innerText = "No Posts";
+    text.style = "color:wheat;font-size:50px;";
     text.className = "text-center";
 
     $(".pages").append(text);

@@ -20,22 +20,3 @@ const login = async (req, res) => {
 };
 
 module.exports = { login };
-// app
-//   .route("/login")
-//   .get(sessionChecker, (req, res) => {
-//     res.sendFile("/Tie-Up/web/FrontEnd/login.html");
-//   })
-//   .post(async (req, res) => {
-//     var email = req.body.email;
-//     var password = req.body.password;
-//     var user = await User.findOne({ email: email }).lean();
-//     if (!user) {
-//       res.redirect("/login");
-//     }
-//     if (await bcrypt.compareSync(password, user.password)) {
-//       req.session.user = user;
-//       res.redirect("/home");
-//     } else {
-//       res.redirect("/login");
-//     }
-//   });

@@ -18,6 +18,10 @@ const User = new mongoose.Schema(
       type: String,
       required: true,
     },
+    resetPasswordToken: {
+      type: String,
+      required: true,
+    },
   },
   { collection: "User-data" }
 );
