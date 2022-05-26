@@ -27,7 +27,7 @@ async function fillyourprofileform() {
   document.querySelector("#city").value = data.city;
   document.querySelector("#state").value = data.state;
   document.querySelector("#zip_code").value = data.zip_code;
-  document.querySelector("#profile_pic").file = data.profile_pic;
+  // document.querySelector("#profile_pic").file = data.profile_pic;
   document.querySelector("#about").value = data.about;
   //change placeholder value
   document.querySelector("#firstname").ariaPlaceholder = data.firstname;

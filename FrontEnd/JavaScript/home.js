@@ -16,7 +16,7 @@ window.onload = async () => {
     const des = document.createElement("div");
     des.innerHTML = `<p>${data[i].description}</p>`;
     var image = new Image();
-    page.className = "post card ";
+    page.className = "post card mb-3";
     username.className = "username pt-2";
     pg_row.className = "row";
     des.className = "col col-md-12 col-lg-7 col-sm-12 col-xs-12";
@@ -74,8 +74,11 @@ window.onload = async () => {
     $(".pages").append(page);
     document.getElementById("loader").style.display = "none";
     userimage();
+    // //show user profile
+    // username.addEventListener("click", async (e) => {
+    //   window.location.href =
+    // });
   }
-
   async function userimage() {
     const user_name = document.cookie.split("=")[2];
     const response = await fetch(`http://localhost:4000/home/${user_name}`, {

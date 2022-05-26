@@ -338,8 +338,8 @@ body {
   box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
   margin-right: 10px;
   margin-left: 5px;
-  width: fit-content;
-  block-size: fit-content;
+  height: 100%;
+  box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
 }
 
 .lprofile {
@@ -361,6 +361,7 @@ body {
 .maindiv {
   padding: 2%;
   padding-top: 0%;
+  justify-content: space-around;
 }
 
 @media all and (max-width: 480px) {
@@ -371,7 +372,6 @@ body {
 
 .textarea {
   margin-top: 20px;
-  width: 100%;
+  width: 90%;
   padding: 10px;
-  border-radius: 5%;
 }

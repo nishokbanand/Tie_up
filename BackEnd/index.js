@@ -213,12 +213,36 @@ app.get("/userprofile/:id", async (req, res) => {
   res.json(data);
 });
 
+//send user data
+app.get("/profile/:id", async (req, res) => {
+  var id = req.params.id;
+  var data = await userprofile.findOne({ name: id });
+  res.redirect("/user/profile/" + id);
+});
+
+// app
+//   .get("/user/profile/:id", async (req, res) => {
+//     var id = req.params.id;
+//     var data = await userprofile.findOne({ name: id });
+//   })
+//   .route("/user/profile/:id", async (req, res) => {
+//     res.sendFile("/Tie-Up/web/FrontEnd/profileviewer.html");
+//   });
+
+// app.post("/user/profile/:id", async (req, res) => {
+//   var id = req.params.id;
+//   var data = await userprofile.findOne({ name: id });
+//   res.send(data);
+// });
+
 //user image for home page
 app.get("/home/:id", async (req, res) => {
   var id = req.params.id;
   var data = await userprofile.findOne({ name: id });
   res.json(data);
 });
+
+//profile viewer
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
