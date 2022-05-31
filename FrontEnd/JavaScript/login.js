@@ -19,7 +19,6 @@ async function handleSubmit(e) {
     body: JSON.stringify(user),
   });
   const data = await response;
-  console.log(response);
   if (data.status === 200) {
     window.location = "/home";
   } else {

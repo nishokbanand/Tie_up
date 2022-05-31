@@ -1,11 +1,10 @@
 window.onload = async () => {
-  document.getElementById("username").innerText = document.cookie.split("=")[2];
+  document.getElementById("username").innerText = document.cookie.split("=")[1];
   const response = await fetch("http://localhost:4000/values");
   const data = await response.json();
-  console.log(data);
   var flag = 0;
   for (var i = 0; i < data.length; i++) {
-    if (data[i].username === document.cookie.split("=")[2]) {
+    if (data[i].username === document.cookie.split("=")[1]) {
       flag = 1;
       //creation and styling of elements
       const page = document.createElement("div");
@@ -94,7 +93,6 @@ window.onload = async () => {
           formData.append("title", newtitle.value);
           formData.append("description", newdes.value);
           if (newimage.value == undefined) {
-            console.log("here");
             formData.append("image", data[id].image);
           }
           formData.append("image", newimage.files[0]);

@@ -28,12 +28,6 @@ app.use(
     },
   })
 );
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie("user_sid");
-  }
-  next();
-});
 
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
@@ -73,8 +67,12 @@ app.get("/home", (req, res) => {
     res.cookie("user_name", req.session.user.name);
     res.sendFile("/Tie-Up/web/FrontEnd/home.html");
   } else {
-    res.redirect("/login");
+    res.redirect("/frontpage");
   }
+});
+
+app.get("/frontpage", (req, res) => {
+  res.sendFile("/Tie-Up/web/FrontEnd/index.html");
 });
 
 //route for adding post
@@ -139,6 +137,7 @@ app.put("/edit/:id", async (req, res) => {
 app.get("/logout", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
     res.clearCookie("user_sid");
+    res.clearCookie("user_name");
     res.redirect("/login");
   } else {
     res.redirect("/login");
@@ -209,40 +208,45 @@ const userprofile = require("./models/userprofile.model");
 //change the placeholder value
 app.get("/userprofile/:id", async (req, res) => {
   var id = req.params.id;
-  var data = await userprofile.findOne({ name: id });
+  var data = await userprofile.findOne({ username: id });
   res.json(data);
 });
 
 //send user data
 app.get("/profile/:id", async (req, res) => {
   var id = req.params.id;
-  var data = await userprofile.findOne({ name: id });
+  var data = await userprofile.findOne({ username: id });
   res.redirect("/user/profile/" + id);
 });
-
-// app
-//   .get("/user/profile/:id", async (req, res) => {
-//     var id = req.params.id;
-//     var data = await userprofile.findOne({ name: id });
-//   })
-//   .route("/user/profile/:id", async (req, res) => {
-//     res.sendFile("/Tie-Up/web/FrontEnd/profileviewer.html");
-//   });
-
-// app.post("/user/profile/:id", async (req, res) => {
-//   var id = req.params.id;
-//   var data = await userprofile.findOne({ name: id });
-//   res.send(data);
-// });
-
 //user image for home page
 app.get("/home/:id", async (req, res) => {
   var id = req.params.id;
-  var data = await userprofile.findOne({ name: id });
+  console.log("id " + id);
+  var data = await userprofile.findOne({ username: id });
   res.json(data);
 });
 
-//profile viewer
+//view profile
+app.get("/viewprofilesupport/:id", async (req, res) => {
+  var id = req.params.id;
+  var data = await userprofile.findOne({ username: id });
+  res.json(data);
+});
+
+app.route("/viewprofile").get(async (req, res) => {
+  res.sendFile("/Tie-Up/web/FrontEnd/profileviewer.html");
+});
+
+//add news
+const { newsUploader } = require("./routes/addnews");
+app.post("/postnews", newsUploader);
+
+//get news
+const news = require("./models/news.model");
+app.get("/getnews", async (req, res) => {
+  var data = await news.find({});
+  res.json(data);
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

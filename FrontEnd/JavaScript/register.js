@@ -28,8 +28,6 @@ async function handleSubmit(e) {
     },
   });
   const data = await response;
-  console.log("data");
-  console.log(data);
   if (data.status === 200) {
     window.location.href = "/home";
   } else {

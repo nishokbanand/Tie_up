@@ -7,7 +7,7 @@ const userProfile = require("../models/userprofile.model");
 var profileuploader = async function (req, res) {
   try {
     var user = await userProfile.findOne({
-      email: req.body.email,
+      username: req.body.username,
     });
     if (user == null) {
       a = await userProfile.create({

@@ -1,6 +1,6 @@
 window.onload = () => {
   document.getElementById("username1").innerText =
-    document.cookie.split("=")[2];
+    document.cookie.split("=")[1];
   document
     .querySelector("#yourprofileform")
     .addEventListener("submit", handleSubmit);
@@ -8,7 +8,7 @@ window.onload = () => {
 };
 
 async function fillyourprofileform() {
-  const username = document.cookie.split("=")[2];
+  const username = document.cookie.split("=")[1];
   const response = await fetch(
     `http://localhost:4000/userprofile/${username}`,
     {
@@ -16,7 +16,6 @@ async function fillyourprofileform() {
     }
   );
   const data = await response.json();
-  console.log(data);
   document.querySelector("#firstname").value = data.firstname;
   document.querySelector("#lastname").value = data.lastname;
   document.querySelector("#aadhar_number").value = data.aadhar_number;
@@ -45,7 +44,7 @@ async function fillyourprofileform() {
 
   //change innertext of user name
   document.querySelector("#user_name").innerText =
-    "Username: " + document.cookie.split("=")[2];
+    "Username: " + document.cookie.split("=")[1];
   document.querySelector("#about").value = data.about;
 }
 
@@ -76,7 +75,7 @@ const handleSubmit = async (event) => {
   const about = document.querySelector("#about").value;
   const profilePicDataURI = await fileToDataURI(profile_pic);
   const user_profile = {
-    username: document.cookie.split("=")[2],
+    username: document.cookie.split("=")[1],
     firstname: firstname,
     lastname: lastname,
     aadhar_number: aadhar_number,
@@ -98,7 +97,6 @@ const handleSubmit = async (event) => {
     },
   });
   const data = await response;
-  console.log(response);
   if (data.status === 200) {
     window.location = "/home";
   } else {

@@ -11,7 +11,7 @@ var imageUploader = async function (req, res) {
       username: req.session.user.name,
       title: req.body.title,
       description: req.body.description,
-      image: req.files.file.data.toString("base64"),
+      image: req.body.image,
     });
     value = a;
     res.redirect("/home");

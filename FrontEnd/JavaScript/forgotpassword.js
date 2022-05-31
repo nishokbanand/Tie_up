@@ -16,7 +16,6 @@ async function handleSubmit(e) {
     },
   });
   const data = await response;
-  console.log(data);
   if (data.status === 200) {
     alert("check your mail");
   } else {
