@@ -17,6 +17,10 @@ const Post = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilepic: {
+      type: String,
+      required: true,
+    },
     likes: {
       type: Array,
       required: true,

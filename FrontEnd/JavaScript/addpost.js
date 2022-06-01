@@ -1,5 +1,6 @@
 window.onload = function () {
-  document.getElementById("username").innerText = document.cookie.split("=")[1];
+  document.getElementById("username1").innerText =
+    document.cookie.split("=")[1];
   document
     .querySelector("#addpost-form")
     .addEventListener("submit", handleSubmit);
@@ -20,12 +21,24 @@ async function handleSubmit(e) {
   const title = document.querySelector("#title").value;
   const description = document.querySelector("#description").value;
   const image = document.querySelector("#file").files[0];
+  const profilepicres = await fetch("/getprofilepic", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+    }),
+  });
+  const profilepic = await profilepicres.json();
+  const profilepicurl = profilepic.profile_pic;
   const imageURI = await fileToDataURI(image);
   const user = {
     username: username,
     title: title,
     description: description,
     image: imageURI,
+    profilepic: profilepicurl,
   };
   const response = fetch("http://localhost:4000/upload", {
     method: "POST",

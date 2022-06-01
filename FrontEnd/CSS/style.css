@@ -1,142 +1,15 @@
-/* * {
-  box-sizing: bordered-box;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar {
-  list-style-type: none;
-  color: black;
-  margin: 0;
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.list {
-  margin: 2%;
-  list-style: none;
-}
-
-.nav_items {
-  display: inline;
-  padding: 2%;
-  margin-bottom: 0;
-}
-
-#homeicon {
-  height: 2pc;
-  float: left;
-  border-radius: 20%;
-}
-
-.searchbar {
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.searchimg {
-  height: 20px;
-  width: 10px;
-  background-color: blue;
-  padding: 0%;
-}
-
-.sbutton {
-  width: 60px;
-  padding: 0px;
-}
-
-.cover {
-  border-radius: 10%;
-  height: 300px;
-}
-
-.postimage {
-  padding: 10px;
-}
-
-.image {
-  background-color: black;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.postdesc {
-  margin: 1%;
-}
-
-.profile {
-  border-radius: 100%;
-  height: 50px;
-  width: 50px;
-}
-
-.fa-thumbs-up {
-  font-size: 100px;
-  cursor: pointer;
-  user-select: none;
-  color: rgba(7, 7, 7, 0.485);
-}
-
-.fa:hover {
-  color: rgba(102, 111, 238, 0.751);
-}
-
-.reaction {
-  list-style-type: none;
-  color: rgba(0, 0, 0, 0.501);
-  margin: 0;
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.reaction-items {
-  padding-left: 2%;
-  display: inline;
-  margin-right: 20px;
-}
-
-.outbox {
-  background-color: rgba(50, 0, 247, 0.031);
-  border-radius: 2%;
-  margin: 0 auto;
-  width: fit-content;
-  padding: 2%;
-}
-
-.inbox {
-  padding: 2%;
-}
-
-.outboxtitle {
-  color: rgb(15, 15, 148);
-}
-
-.post {
-  padding: 2%;
-  margin: 7%;
-  margin-top: 0%;
-}
-
-.pages_style {
-  background-color: wheat;
-} */
 * {
   box-sizing: bordered-box;
   margin: 0;
   padding: 0;
 }
-
 body {
-  background: rgb(1, 5, 24);
+  /* background: rgb(1, 5, 24);
   background: linear-gradient(
     90deg,
     rgba(1, 5, 24, 1) 0%,
     rgba(144, 1, 40, 1) 100%
-  );
+  ); */
 }
 
 .navbari {
@@ -145,13 +18,16 @@ body {
   color: black;
   margin: 0;
   font-size: 20px;
+  margin-bottom: 40px;
   display: flex;
+  /* height: 90px; */
   justify-content: space-between;
-  background-color: white;
-  margin-bottom: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
+  /* background-color: white; */
+  background-color: #94618e;
+  /* margin-bottom: 5px; */
+  /* border-bottom-left-radius: 20px; */
+  /* border-bottom-right-radius: 20px; */
+  /* box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56); */
 }
 
 .list {
@@ -162,15 +38,18 @@ body {
 .nav_items {
   display: inline;
   margin-bottom: 0;
+  color: white;
 }
 
 .nav_item {
   text-decoration: none;
-  color: black;
+  /* color: black; */
+  color: white !important;
 }
 
 .nav_item:hover {
-  background: #590139 !important;
+  /* background: #590139 !important; */
+  background: #49274a !important;
   color: white !important;
 }
 
@@ -262,11 +141,11 @@ body {
 .post {
   padding: 2%;
   margin-top: 0%;
-  box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
+  /* box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56); */
 }
 
 .pages_style {
-  background-color: wheat;
+  background-color: white;
 }
 
 .dropbtn {
@@ -300,8 +179,9 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #7c0139fe;
-  color: wheat;
+  /* background-color: #7c0139fe; */
+  background-color: #49274a;
+  color: wheat !important;
 }
 
 .dropdown:hover .dropdown-content {
@@ -335,11 +215,11 @@ body {
 
 .about {
   padding: 30px;
-  box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
+  /* box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56); */
   margin-right: 10px;
   margin-left: 5px;
   height: 100%;
-  box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56);
+  /* box-shadow: 0px -5px 30px 5px rgb(95, 1, 31), 5px 5px 30px 5px rgb(1, 1, 56); */
 }
 
 .lprofile {
@@ -352,9 +232,8 @@ body {
 }
 
 .lprofileimg {
-  border-style: groove;
-  border-radius: 40%;
-  height: 120px;
+  border-radius: 50%;
+  height: 100px;
   width: 90px;
 }
 

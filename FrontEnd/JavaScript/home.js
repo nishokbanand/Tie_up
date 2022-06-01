@@ -13,12 +13,12 @@ window.onload = async () => {
     const data = await response.json();
     for (var i = 0; i < data.length; i++) {
       const page = document.createElement("div");
-      const username = document.createElement("div");
+      const username = document.createElement("h5");
       const pg_row = document.createElement("div");
       const title = document.createElement("div");
       title.innerHTML = `<h3>${data[i].title}</h3>`;
       const hr = document.createElement("hr");
-      username.innerHTML = `<p>${data[i].username}</p>`;
+      username.innerHTML = `<a>${data[i].username}</a>`;
       const des = document.createElement("div");
       des.innerHTML = `<p>${data[i].description}</p>`;
       var image = new Image();
@@ -28,6 +28,9 @@ window.onload = async () => {
       des.className = "col col-md-12 col-lg-7 col-sm-12 col-xs-12";
       image.className = "postimage col col-md-12 col-lg-5 col-sm-12 col-xs-12";
       image.src = data[i].image;
+      const profilepic = new Image();
+      profilepic.className = "profilepic";
+      profilepic.src = data[i].profilepic;
       const likebutton = document.createElement("i");
       likebutton.className = "fa fa-heart fa-2x";
       likebutton.id = data[i]._id;
@@ -53,6 +56,7 @@ window.onload = async () => {
           likebutton.style = "color:red";
         }
       }
+      $(page).append(profilepic);
       $(page).append(username);
       $(username).append(hr);
       $(pg_row).append(title);
@@ -61,6 +65,7 @@ window.onload = async () => {
       $(pg_row).append(likebutton);
       $(pg_row).append(no_of_likes);
       $(page).append(pg_row);
+      page.style = "background-color:white";
       username.addEventListener("click", viewprofile);
       page.addEventListener("dblclick", async (e) => {
         const response = await fetch(
@@ -155,7 +160,7 @@ window.onload = async () => {
       const newcardheadertextmembersince = document.createElement("div");
       const newcardheadertextmembersincestrong =
         document.createElement("strong");
-      newcardheadertextmembersincestrong.innerHTML = "01/01/2019";
+      newcardheadertextmembersincestrong.innerHTML = data[i].date;
       newcardheadertextmembersince.appendChild(
         newcardheadertextmembersincestrong
       );

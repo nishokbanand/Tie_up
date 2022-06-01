@@ -1,5 +1,6 @@
 window.onload = async () => {
-  document.getElementById("username").innerText = document.cookie.split("=")[1];
+  document.getElementById("username1").innerText =
+    document.cookie.split("=")[1];
   const response = await fetch("http://localhost:4000/values");
   const data = await response.json();
   var flag = 0;

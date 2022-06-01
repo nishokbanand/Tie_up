@@ -1,40 +1,110 @@
-<html>
-
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <title>Register</title>
-    <link rel="stylesheet" href="./CSS/register.css">
-    </link>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&family=Send+Flowers&display=swap"
-        rel="stylesheet"> -->
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<body>
-    <section class="login">
-        <div class="login_box">
-            <div class="right">
-            </div>
-            <div class="left">
-                <div class="top_link"><a href="/frontpage"><img src="./wallpapers/login-return_icon.png" alt=""></a></div>
-                <div class="contact">
-                    <form method="post"  id="register-form">
-                        <h3>Register</h3>
-                        <input type="text" id="username" placeholder="USERNAME" required>
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="password" id="password" placeholder="PASSWORD" required>
-                        <input type ="password" id="confirm_password" placeholder="CONFIRM PASSWORD" required>
-                        <button class="submit" value="submit">Register</button>
-                    </form>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body style="background-color: rgb(241, 228, 220)">
+    <section class="ftco-section" style="padding-top: 0">
+      <div class="container">
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-6 col-lg-5">
+            <div class="login-wrap p-5" style="border-radius: 10px">
+              <div
+                class="img d-flex align-items-center justify-content-center"
+                style="background-image: url(./wallpapers/homeicon.jpg)"
+              ></div>
+              <h3 class="text-center mb-0">Welcome</h3>
+              <p class="text-center">
+                Sign Up by entering the information below
+              </p>
+              <form class="register-form" method="POST">
+                <div class="form-group">
+                  <div
+                    class="icon d-flex align-items-center justify-content-center"
+                  >
+                    <span class="fa fa-user"></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="username"
+                    required
+                    id="username"
+                  />
                 </div>
+                <div class="form-group">
+                  <div
+                    class="icon d-flex align-items-center justify-content-center"
+                  >
+                    <span class="fa fa-user"></span>
+                  </div>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    required
+                    id="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <div
+                    class="icon d-flex align-items-center justify-content-center"
+                  >
+                    <span class="fa fa-lock"></span>
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                    id="password"
+                  />
+                </div>
+                <div class="form-group">
+                  <div
+                    class="icon d-flex align-items-center justify-content-center"
+                  >
+                    <span class="fa fa-lock"></span>
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm_Password"
+                    required
+                    id="confirm_password"
+                  />
+                </div>
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="btn form-control btn-primary rounded submit px-3"
+                    id="submit"
+                  >
+                    Get Started
+                  </button>
+                </div>
+              </form>
+              <div class="w-100 text-center mt-4 text">
+                <p class="mb-0">Have an account?</p>
+                <a href="/login">Sign In</a>
+              </div>
             </div>
-            
+          </div>
         </div>
+      </div>
     </section>
+    <!-- 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script> -->
     <script src="./JavaScript/register.js"></script>
-</body>
+  </body>
 </html>

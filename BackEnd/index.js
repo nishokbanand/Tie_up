@@ -115,7 +115,6 @@ app.delete("/delete/:id", async (req, res) => {
 
 //update post
 app.put("/edit/:id", async (req, res) => {
-  console.log(req.body);
   var id = req.params.id;
   var data = await Post.findById(id);
   if (data == null) {
@@ -164,8 +163,6 @@ app.get("/resetpassword/:token", async (req, res) => {
   }
 });
 app.post("/resetpassword/:token", async (req, res) => {
-  console.log("hello");
-  console.log(req.body);
   var id = req.params.id;
   var data = await Post.findById(id);
   if (data == null) {
@@ -180,13 +177,11 @@ app.post("/resetpassword/:token", async (req, res) => {
 app.put("/like/:id", async (req, res) => {
   var id = req.params.id;
   var data = await Post.findById(id);
-  console.log(req.session.user);
   if (!data.likes.includes(req.session.user.name)) {
     await data.updateOne({ $push: { likes: req.session.user.name } });
     res.sendStatus(200);
   } else {
     await data.updateOne({ $pull: { likes: req.session.user.name } });
-    console.log(req.session);
     res.sendStatus(200);
   }
 });
@@ -221,7 +216,6 @@ app.get("/profile/:id", async (req, res) => {
 //user image for home page
 app.get("/home/:id", async (req, res) => {
   var id = req.params.id;
-  console.log("id " + id);
   var data = await userprofile.findOne({ username: id });
   res.json(data);
 });
@@ -245,6 +239,13 @@ app.post("/postnews", newsUploader);
 const news = require("./models/news.model");
 app.get("/getnews", async (req, res) => {
   var data = await news.find({});
+  res.json(data);
+});
+
+//get profilepic
+app.post("/getprofilepic", async (req, res) => {
+  var id = req.body.username;
+  var data = await userprofile.findOne({ username: id });
   res.json(data);
 });
 

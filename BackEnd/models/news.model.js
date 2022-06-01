@@ -12,6 +12,9 @@ const news = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: String,
+  },
 });
 const model = mongoose.model("news", news);
 module.exports = model;

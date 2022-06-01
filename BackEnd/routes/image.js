@@ -12,6 +12,7 @@ var imageUploader = async function (req, res) {
       title: req.body.title,
       description: req.body.description,
       image: req.body.image,
+      profilepic: req.body.profilepic,
     });
     value = a;
     res.redirect("/home");

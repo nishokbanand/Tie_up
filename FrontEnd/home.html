@@ -10,8 +10,8 @@
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<link rel="stylesheet" href="./CSS/loading.css">
 </head>
-
-<body>
+ 
+<body style="background-color:#F8EEE7">
 	<div class="navbari">
 		<ul class="list">
 			<li class="nav_items btn"><img id="homeicon"  src="./wallpapers/homeicon.jpg" /></li>
@@ -27,25 +27,23 @@
 				class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></input>
 		</form>
 		<div class="profile mr-2">
-			<p class="btn" id="username1">username</p>
+			<p class="btn" id="username1" style="color: white;">username</p>
 			<div class="dropdown">
-				<img onclick="myFunction()" class="profileimage profilepic dropbtn" src="./wallpapers/homeicon.jpg" />
+				<img onclick="myFunction()" class="profileimage profilepic dropbtn" src="./wallpapers/homeicon.jpg"/>
 				<div id="myDropdown" class="dropdown-content">
-					<a class="btn" href="/about">About</a>
 					<a class="btn" href="/yourprofile">Your Profile</a>
-					<a class="btn" href="/contact">Contact</a>
 					<a class ="btn" href = "/logout">Logout</a>
 				</div>
 			</div>
 		</div>
-
 	</div>
+
 	<div id="loader">
 		<lottie-player  src="https://assets6.lottiefiles.com/private_files/lf30_yPKMfX.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; position: absolute; margin: auto;"  loop  autoplay></lottie-player></div>
 	<div style="display:none;align-items: center;" id="myDiv" class="animate-bottom">
 	</div>
-	<div class="d-flex maindiv">
-		<div class="about card col col-3 ">
+	<div class="d-flex maindiv" style="background-color:#F8EEE7">
+		<div class="about card col col-3">
 			<div class="lprofile">
 				<img class="lprofileimg" id="profile" src="./wallpapers/homeicon.jpg" />
 			</div>
@@ -57,7 +55,7 @@
 			</form>
 			</div>
 		</div>
-	<div class="pages col col-5	 mb-4"></div>
+	<div class="pages col col-6	 mb-4"></div>
 		<div class="container-fluid mt-100">
 		<div class="row">
 			<div class="col-md-12">

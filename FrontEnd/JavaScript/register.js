@@ -1,6 +1,6 @@
 window.onload = function () {
   document
-    .querySelector("#register-form")
+    .querySelector(".register-form")
     .addEventListener("submit", handleSubmit);
   document.querySelector("#forgotpassword").addEventListener();
 };
