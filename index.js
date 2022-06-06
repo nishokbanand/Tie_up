@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 4000;
@@ -37,20 +38,20 @@ var sessionChecker = (req, res, next) => {
   }
 };
 
-app.use(express.static("/Tie-Up/web/FrontEnd"));
+app.use(express.static(path.join(__dirname, "/FrontEnd")));
 app.get("/", sessionChecker, (req, res) => {
   res.redirect("/login");
 });
 //route for login
 app.route("/login").get(sessionChecker, (req, res) => {
-  res.sendFile("/Tie-Up/web/FrontEnd/login.html");
+  res.sendFile(path.join(__dirname, "/FrontEnd/login.html"));
 });
 //register
 const { register } = require("./routes/register.js");
 app
   .route("/register")
   .get(sessionChecker, (req, res) => {
-    res.sendFile("/Tie-Up/web/FrontEnd/register.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/register.html"));
   })
   .post(register);
 //login
@@ -58,27 +59,27 @@ const { login } = require("./routes/login");
 app
   .route("/login")
   .get(sessionChecker, (req, res) => {
-    res.sendFile("/Tie-Up/web/FrontEnd/login.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/login.html"));
   })
   .post(login);
 //route for home
 app.get("/home", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
     res.cookie("user_name", req.session.user.name);
-    res.sendFile("/Tie-Up/web/FrontEnd/home.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/home.html"));
   } else {
     res.redirect("/frontpage");
   }
 });
 
 app.get("/frontpage", (req, res) => {
-  res.sendFile("/Tie-Up/web/FrontEnd/index.html");
+  res.sendFile(path.join(__dirname, "/FrontEnd/index.html"));
 });
 
 //route for adding post
 app.get("/addPost", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.sendFile("/Tie-Up/web/FrontEnd/addpost.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/addpost.html"));
   } else {
     res.redirect("/login");
   }
@@ -87,7 +88,7 @@ app.get("/addPost", (req, res) => {
 //route for showing user's post
 app.get("/yourposts", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.sendFile("/Tie-Up/web/FrontEnd/yourposts.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/yourposts.html"));
   } else {
     res.redirect("/login");
   }
@@ -148,7 +149,7 @@ const { forgotpass } = require("./routes/forgotpasswordbackend");
 app
   .route("/forgotpassword")
   .get(sessionChecker, (req, res) => {
-    res.sendFile("/Tie-Up/web/FrontEnd/forgotpassword.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/forgotpassword.html"));
   })
   .post(forgotpass);
 
@@ -159,7 +160,7 @@ app.get("/resetpassword/:token", async (req, res) => {
   if (data == null) {
     res.sendStatus(404);
   } else {
-    res.sendFile("/Tie-Up/web/FrontEnd/resetpass.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/resetpass.html"));
   }
 });
 app.post("/resetpassword/:token", async (req, res) => {
@@ -189,7 +190,7 @@ app.put("/like/:id", async (req, res) => {
 //route for showing user profile
 app.get("/yourprofile", (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.sendFile("/Tie-Up/web/FrontEnd/yourprofile.html");
+    res.sendFile(path.join(__dirname, "/FrontEnd/yourprofile.html"));
   } else {
     res.redirect("/login");
   }
@@ -228,7 +229,7 @@ app.get("/viewprofilesupport/:id", async (req, res) => {
 });
 
 app.route("/viewprofile").get(async (req, res) => {
-  res.sendFile("/Tie-Up/web/FrontEnd/profileviewer.html");
+  res.sendFile(path.join(__dirname, "/FrontEnd/profileviewer.html"));
 });
 
 //add news
