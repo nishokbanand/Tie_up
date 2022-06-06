@@ -10,7 +10,7 @@ const handleSubmit = async (e) => {
     alert("password not match");
     return;
   }
-  const response = await fetch("http://localhost:4000/resetpassword/", {
+  const response = await fetch("/resetpassword/", {
     method: "POST",
     body: JSON.stringify({
       new_password: new_password,

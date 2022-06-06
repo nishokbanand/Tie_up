@@ -1,7 +1,7 @@
 window.onload = async () => {
   document.getElementById("username1").innerText =
     document.cookie.split("=")[1];
-  const response = await fetch("http://localhost:4000/values");
+  const response = await fetch("/values");
   const data = await response.json();
   var flag = 0;
   for (var i = 0; i < data.length; i++) {
@@ -34,12 +34,9 @@ window.onload = async () => {
       deletebtn.innerText = "Delete";
       deletebtn.id = data[i]._id;
       deletebtn.onclick = async (e) => {
-        const response = await fetch(
-          `http://localhost:4000/delete/${e.target.id}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(`/delete/${e.target.id}`, {
+          method: "DELETE",
+        });
         if (response.status === 200) {
           $(e.target).parent().remove();
         } else {
@@ -99,13 +96,10 @@ window.onload = async () => {
             formData.append("image", newimage.files[0]);
           }
           console.log(newimage.files[0]);
-          const response = await fetch(
-            `http://localhost:4000/edit/${e.target.id}`,
-            {
-              method: "PUT",
-              body: formData,
-            }
-          );
+          const response = await fetch(`/edit/${e.target.id}`, {
+            method: "PUT",
+            body: formData,
+          });
           if (response.status === 200) {
             $(e.target).parent().remove();
             window.location = "/yourposts";

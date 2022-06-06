@@ -64,7 +64,7 @@ async function search(e) {
 }
 
 async function fetchnews() {
-  const response = await fetch("http://localhost:4000/values");
+  const response = await fetch("/values");
   const data = await response.json();
   for (var i = 0; i < data.length; i++) {
     const page = document.createElement("div");
@@ -93,12 +93,9 @@ async function fetchnews() {
     const no_of_likes = document.createElement("div");
     no_of_likes.className = "no_of_likes";
     likebutton.addEventListener("click", async (e) => {
-      const response = await fetch(
-        `http://localhost:4000/like/${e.target.id}`,
-        {
-          method: "PUT",
-        }
-      );
+      const response = await fetch(`/like/${e.target.id}`, {
+        method: "PUT",
+      });
       const data = await response;
       if (data.status === 200) {
         window.location.href = "/home";
@@ -127,12 +124,9 @@ async function fetchnews() {
     page.style = "background-color:white";
     username.addEventListener("click", viewprofile);
     page.addEventListener("dblclick", async (e) => {
-      const response = await fetch(
-        `http://localhost:4000/like/${likebutton.id}`,
-        {
-          method: "PUT",
-        }
-      );
+      const response = await fetch(`/like/${likebutton.id}`, {
+        method: "PUT",
+      });
       const data = await response;
       if (data.status === 200) {
         window.location.href = "/home";
@@ -148,7 +142,7 @@ async function fetchnews() {
 
 async function userimage() {
   const user_name = document.cookie.split("=")[1];
-  const response = await fetch(`http://localhost:4000/home/${user_name}`, {
+  const response = await fetch(`/home/${user_name}`, {
     method: "GET",
   });
   const data = await response.json();
@@ -157,12 +151,9 @@ async function userimage() {
 }
 
 async function viewprofile(e) {
-  const response = await fetch(
-    `http://localhost:4000/viewprofilesupport/${e.target.innerText}`,
-    {
-      method: "GET",
-    }
-  );
+  const response = await fetch(`/viewprofilesupport/${e.target.innerText}`, {
+    method: "GET",
+  });
   //store it in localStorage
   const data = await response.json().then((res) => {
     localStorage.setItem("profile_data", JSON.stringify(res));
@@ -352,7 +343,7 @@ async function replyfn(e) {
     replynews,
     uniqueidofnews,
   };
-  const response = await fetch("http://localhost:4000/postnewsreply", {
+  const response = await fetch("/postnewsreply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

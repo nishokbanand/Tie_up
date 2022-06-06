@@ -11,7 +11,7 @@ async function handleSubmit(e) {
     email: email,
     password: password,
   };
-  const response = fetch("http://localhost:4000/login", {
+  const response = fetch("/login", {
     method: "POST",
     headers: {
       "Content-type": "application/json",

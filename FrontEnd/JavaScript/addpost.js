@@ -40,7 +40,7 @@ async function handleSubmit(e) {
     image: imageURI,
     profilepic: profilepicurl,
   };
-  const response = fetch("http://localhost:4000/upload", {
+  const response = fetch("/upload", {
     method: "POST",
     body: JSON.stringify(user),
     headers: {

@@ -6,7 +6,7 @@ window.onload = async () => {
 async function handleSubmit(e) {
   e.preventDefault();
   const mail_id = document.getElementById("mail_id").value;
-  const response = await fetch("http://localhost:4000/forgotpassword", {
+  const response = await fetch("/forgotpassword", {
     method: "POST",
     body: JSON.stringify({
       mail_id: mail_id,

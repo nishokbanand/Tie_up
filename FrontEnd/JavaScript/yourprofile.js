@@ -9,12 +9,9 @@ window.onload = () => {
 
 async function fillyourprofileform() {
   const username = document.cookie.split("=")[1];
-  const response = await fetch(
-    `http://localhost:4000/userprofile/${username}`,
-    {
-      method: "GET",
-    }
-  );
+  const response = await fetch(`/userprofile/${username}`, {
+    method: "GET",
+  });
   const data = await response.json();
   document.querySelector("#firstname").value = data.firstname;
   document.querySelector("#lastname").value = data.lastname;
@@ -89,7 +86,7 @@ const handleSubmit = async (event) => {
     profile_pic: profilePicDataURI,
     about: about,
   };
-  const response = await fetch("http://localhost:4000/updateprofile", {
+  const response = await fetch("/updateprofile", {
     method: "PUT",
     body: JSON.stringify(user_profile),
     headers: {

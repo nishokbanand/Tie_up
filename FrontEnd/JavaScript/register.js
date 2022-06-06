@@ -20,7 +20,7 @@ async function handleSubmit(e) {
     password: password,
     password2: password2,
   };
-  const response = fetch("http://localhost:4000/register", {
+  const response = fetch("/register", {
     method: "POST",
     body: JSON.stringify(user),
     headers: {
