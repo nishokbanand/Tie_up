@@ -18,19 +18,19 @@ window.onload = async () => {
       const des = document.createElement("div");
       des.innerHTML = `<p>${data[i].description}</p>`;
       var image = new Image();
-      page.className = "post card mb-4";
+      page.className = "post col col-lg-5 col-md-7 col-sm-8 col-xs-8 card mb-4";
       username.className = "username pt-2";
       pg_row.className = "row";
       des.className = "col col-md-12 col-lg-7 col-sm-12 col-xs-12";
       image.className = "postimage col col-md-12 col-lg-5 col-sm-12 col-xs-12";
-      image.src = `data:image/png;base64,${data[i].image}`;
+      image.src = data[i].image;
       //
       //
       //
       //
       //delete a post
       const deletebtn = document.createElement("button");
-      deletebtn.className = "btn btn-danger";
+      deletebtn.className = "btn btn-danger btn-xs m-2 mb-0";
       deletebtn.innerText = "Delete";
       deletebtn.id = data[i]._id;
       deletebtn.onclick = async (e) => {
@@ -51,7 +51,7 @@ window.onload = async () => {
       //
       //edit a post
       const editbtn = document.createElement("button");
-      editbtn.className = "btn btn-primary";
+      editbtn.className = "btn btn-primary btn-xs m-2 mb-0";
       editbtn.innerText = "Edit";
       editbtn.id = data[i]._id;
       editbtn.value = i;
@@ -71,9 +71,8 @@ window.onload = async () => {
         newtitle.value = data[e.target.value].title;
         newdes.value = data[e.target.value].description;
         var image = new Image();
-        image.src = `data:image/png;base64,${data[e.target.value].image}`;
+        image.src = data[e.target.value].image;
         newdes.className = "col col-md-12 col-lg-7 col-sm-12 col-xs-12";
-        page.className = "post card mb-4";
         username.className = "username pt-2";
         pg_row.className = "row";
         newimage.className =
@@ -87,16 +86,19 @@ window.onload = async () => {
         $(e.target).parent().append(image);
         $(e.target).parent().append(submitbtn);
         $(e.target).parent().append(deletebtn);
-        $(e.target).parent().children().eq(1).remove();
-        $(e.target).parent().children().eq(-7).remove();
+        console.log(e.target.parentNode.childNodes[1].remove());
+        e.target.remove();
         submitbtn.onclick = async (e) => {
+          e.preventDefault();
           const formData = new FormData();
           formData.append("title", newtitle.value);
           formData.append("description", newdes.value);
           if (newimage.value == undefined) {
             formData.append("image", data[id].image);
+          } else {
+            formData.append("image", newimage.files[0]);
           }
-          formData.append("image", newimage.files[0]);
+          console.log(newimage.files[0]);
           const response = await fetch(
             `http://localhost:4000/edit/${e.target.id}`,
             {
@@ -124,6 +126,7 @@ window.onload = async () => {
       $(page).append(pg_row);
       $(page).append(deletebtn);
       $(page).append(editbtn);
+      // $(page).append(btndiv);
       $(".pages").append(page);
       document.getElementById("loader").style.display = "none";
     }

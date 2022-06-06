@@ -123,7 +123,7 @@ app.put("/edit/:id", async (req, res) => {
     data.title = req.body.title;
     data.description = req.body.description;
     if (req.files != undefined) {
-      data.image = req.files.image.data.toString("base64");
+      data.image = req.body.image;
     } else {
       data.image = req.body.image;
     }
@@ -246,6 +246,16 @@ app.get("/getnews", async (req, res) => {
 app.post("/getprofilepic", async (req, res) => {
   var id = req.body.username;
   var data = await userprofile.findOne({ username: id });
+  res.json(data);
+});
+//post news replies
+const { newsreplyUploader } = require("./routes/newsreply");
+app.post("/postnewsreply", newsreplyUploader);
+
+//search text
+app.get("/search/:text", async (req, res) => {
+  var text = req.params.text;
+  var data = await Post.find({ title: text });
   res.json(data);
 });
 

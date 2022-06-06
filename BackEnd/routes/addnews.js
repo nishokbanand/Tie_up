@@ -16,6 +16,7 @@ var newsUploader = async function (req, res) {
       description: req.body.news,
       image: req.body.userprofilepic,
       date: day + "/" + month + "/" + year,
+      unqiueid: req.body.uniqueid,
     });
     res.redirect("/home");
   } catch (error) {
